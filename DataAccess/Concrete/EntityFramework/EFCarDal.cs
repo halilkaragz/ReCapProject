@@ -19,7 +19,7 @@ namespace DataAccess.Concrete.EntityFramework
                 var addedEntity = context.Entry(entity);
                 addedEntity.State = EntityState.Added;
                 context.SaveChanges();
-            }
+        }
         }
 
         public void Delete(Car entity)
@@ -29,13 +29,13 @@ namespace DataAccess.Concrete.EntityFramework
                 var deletedEntity = context.Entry(entity);
                 deletedEntity.State = EntityState.Deleted;
                 context.SaveChanges();
-            }
+        }
         }
 
         public Car Get(int id)
         {
             using (RentACarContext context = new RentACarContext())
-            {
+        {
                 return context.Set<Car>().SingleOrDefault(c => c.Id == id);
             }
         }
@@ -43,7 +43,7 @@ namespace DataAccess.Concrete.EntityFramework
         public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
         {
             using (RentACarContext context = new RentACarContext())
-            {
+        {
                 return filter == null
                     ? context.Set<Car>().ToList()
                     : context.Set<Car>().Where(filter).ToList();
@@ -53,7 +53,7 @@ namespace DataAccess.Concrete.EntityFramework
         public void Update(Car entity)
         {
             using (RentACarContext context = new RentACarContext())
-            {
+        {
                 var updatedEntity = context.Entry(entity);
                 updatedEntity.State = EntityState.Modified;
                 context.SaveChanges();
