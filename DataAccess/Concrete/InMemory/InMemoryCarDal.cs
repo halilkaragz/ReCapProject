@@ -38,9 +38,9 @@ namespace DataAccess.Concrete.InMemory
             _cars.Remove(_carToDelete);
         }
 
-        public Car Get(int id)
+        public Car Get(Expression<Func<Car, bool>> filter)
         {
-            return _cars.SingleOrDefault(c => c.Id == id);
+            throw new NotImplementedException();
         }
 
         public List<Car> GetAll()
@@ -67,7 +67,7 @@ namespace DataAccess.Concrete.InMemory
             //return carToReturn;
 
             return _cars.SingleOrDefault(c => c.Id == Id);
-        }
+        }  
 
         public void Update(Car car)
         {

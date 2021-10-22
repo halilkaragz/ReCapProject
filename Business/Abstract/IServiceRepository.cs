@@ -8,8 +8,7 @@ namespace Business.Abstract
 {
     public interface IServiceRepository<T> where T:class, new()
     {
-        List<T> GetAll();
-        List<T> GetById(int id);
+        List<T> GetAll();       
         T Get(int id);
         void Add(T entity);
         void Update(T entity);

@@ -32,14 +32,6 @@ namespace DataAccess.Concrete.EntityFramework
             }
         }
 
-        public Brand Get(int id)
-        {
-            using (RentACarContext context = new RentACarContext())
-            {
-                return context.Set<Brand>().SingleOrDefault(b => b.Id == id);
-            }
-        }
-
         public List<Brand> GetAll(Expression<Func<Brand, bool>> filter = null)
         {            
             using (RentACarContext context = new RentACarContext())
@@ -47,6 +39,14 @@ namespace DataAccess.Concrete.EntityFramework
                 return filter == null
                     ? context.Set<Brand>().ToList()
                     : context.Set<Brand>().Where(filter).ToList();
+            }
+        }
+
+        public Brand Get(Expression<Func<Brand, bool>> filter)
+        {
+            using (RentACarContext context = new RentACarContext())
+            {
+                return context.Set<Brand>().SingleOrDefault(filter);
             }
         }
 

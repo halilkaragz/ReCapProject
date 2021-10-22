@@ -41,19 +41,14 @@ namespace Business.Concrete
 
         public Car Get(int id)
         {
-            return _carDal.Get(id);
+            return _carDal.Get(c => c.Id == id);
         }
 
         public List<Car> GetAll()
         {
             //İş kodlarından geçiyorsa veri erişim katmanını çalıştır
             return _carDal.GetAll();
-        }
-
-        public List<Car> GetById(int id)
-        {
-            return _carDal.GetAll(c=> c.Id == id);
-        }
+        }       
 
         public void Update(Car car)
         {
