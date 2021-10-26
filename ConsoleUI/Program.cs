@@ -11,30 +11,43 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
+            //CarTest();
+            //ColorTest();   
+            //BrandTest();
+        }
+
+        static void ColorTest()
+        {
+            ColorManager colorManager = new ColorManager(new EFColorDal());
+            colorManager.Add(new Color() { Name = "Beyaz" });
+
+            var uColor = colorManager.Get(2);
+            uColor.Name = "Kırmızı";
+            colorManager.Update(uColor);
+
+
+            foreach (var color in colorManager.GetAll())
+            {
+                Console.WriteLine(color.Id + " 'Id nolu renk :  " + color.Name);
+            }
+        }
+
+        static void CarTest()
+        {
             CarManager carManager = new CarManager(new EFCarDal());
-            //carManager.Add(new Car() { BrandId = 4, ColorId = 1, DailyPrice = 250, ModelYear = 2021, Description = "mercedes" });
-            //var car = carManager.GetById(2);
-            //car.Description = "bmv";
-            //carManager.Update(car);
+            carManager.Add(new Car() { BrandId = 4, ColorId = 1, DailyPrice = 250, ModelYear = 2021, Description = "mercedes" });
+            var car = carManager.Get(2);
+            car.Description = "bmv";
+            carManager.Update(car);
+        }
 
-            //ColorManager colorManager = new ColorManager(new EFColorDal());
-            //colorManager.Add(new Color() { Name = "Beyaz" });
-
-            //var uColor = colorManager.Get(2);
-            //uColor.Name = "Kırmızı";
-            //colorManager.Update(uColor);
-
-
-            //foreach (var color in colorManager.GetAll())
-            //{
-            //    Console.WriteLine(color.Id + " 'Id nolu renk :  " + color.Name);
-            //}
-
+        static void BrandTest()
+        {
             BrandManager brandManager = new BrandManager(new EFBrandDal());
-            //Brand brand = new Brand() { Name = "BMW" };
-            //brandManager.Add(brand);
+            Brand brand = new Brand() { Name = "BMW" };
+            brandManager.Add(brand);
 
-            //Brand brand = brandManager.Get(1);                 
+            //Brand brand = brandManager.Get(1);
 
             //Console.WriteLine(brand.Name);
 
