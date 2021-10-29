@@ -21,7 +21,7 @@ namespace ConsoleUI
         {
             CarManager carManager = new CarManager(new EFCarDal());
 
-            foreach (var car in carManager.GetCarDetails())
+            foreach (var car in carManager.GetCarDetails().Data)
             {
                 Console.WriteLine(car.CarName + " - " + car.BrandName +
                     " - " + car.ColorName + " - " + car.DailyPrice);
@@ -33,12 +33,12 @@ namespace ConsoleUI
             ColorManager colorManager = new ColorManager(new EFColorDal());
             colorManager.Add(new Color() { Name = "Beyaz" });
 
-            var uColor = colorManager.Get(2);
+            var uColor = colorManager.Get(2).Data;
             uColor.Name = "Kırmızı";
             colorManager.Update(uColor);
 
 
-            foreach (var color in colorManager.GetAll())
+            foreach (var color in colorManager.GetAll().Data)
             {
                 Console.WriteLine(color.Id + " 'Id nolu renk :  " + color.Name);
             }
@@ -48,7 +48,7 @@ namespace ConsoleUI
         {
             CarManager carManager = new CarManager(new EFCarDal());
             carManager.Add(new Car() { BrandId = 4, ColorId = 1, DailyPrice = 250, ModelYear = 2021, Description = "mercedes" });
-            var car = carManager.Get(2);
+            var car = carManager.Get(2).Data;
             car.Description = "bmv";
             carManager.Update(car);
         }
@@ -66,7 +66,7 @@ namespace ConsoleUI
             //brand.Name = "BMW";
             //brandManager.Update(brand);
 
-            foreach (var item in brandManager.GetAll())
+            foreach (var item in brandManager.GetAll().Data)
             {
                 Console.WriteLine(item.Name);
             }
