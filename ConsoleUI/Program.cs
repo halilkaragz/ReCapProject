@@ -14,7 +14,31 @@ namespace ConsoleUI
             //CarTest();
             //ColorTest();   
             //BrandTest();
-            CarDetailsTest();
+            //CarDetailsTest();
+            //RentalTest();
+            //UserTest();
+
+        }
+
+        private static void UserTest()
+        {
+            UserManager userManager = new UserManager(new EFUserDal());
+            User user = new User()
+            {
+                FirstName = "Halil",
+                LastName = "Karagöz",
+                Email = "halilkaragoz_blsm@hotmail.com",
+                Password = "1234567890"
+            };
+
+            userManager.Add(user);
+        }
+
+        private static void RentalTest()
+        {
+            RentalManager rentalManager = new RentalManager(new EFRentalDal());
+            Rental rental = new Rental() { CarId = 1, CustomerId = 1, RentDate = new DateTime(2021, 10, 31), ReturnDate = new DateTime(2021,10,31) };
+            rentalManager.Add(rental);
         }
 
         private static void CarDetailsTest()
