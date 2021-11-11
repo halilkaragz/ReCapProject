@@ -54,6 +54,10 @@ namespace Business.Concrete
         public IDataResult<List<Car>> GetAll()
         {
             //İş kodlarından geçiyorsa veri erişim katmanını çalıştır
+            //if (DateTime.Now.Hour == 19)
+            //{
+            //    return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
+            //}
             return new SuccessDataResult<List<Car>>( _carDal.GetAll(), Messages.CarsListed);
         }
 
