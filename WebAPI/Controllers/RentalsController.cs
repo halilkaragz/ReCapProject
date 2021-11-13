@@ -1,5 +1,4 @@
 ﻿using Business.Abstract;
-using Core.Utilities.Results;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,20 +11,18 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CarsController : ControllerBase
+    public class RentalsController : ControllerBase
     {
-        ICarService _carService;
-
-        public CarsController(ICarService carService)
+        IRentalService _rentalService;
+        public RentalsController(IRentalService rentalService)
         {
-            _carService = carService;
+            _rentalService = rentalService;
         }
 
         [HttpGet("getall")]
         public IActionResult GetAll()
-        {    
-            //De
-            var Result = _carService.GetAll();
+        {
+            var Result = _rentalService.GetAll();
             if (Result.Success)
             {
                 return Ok(Result);
@@ -35,35 +32,24 @@ namespace WebAPI.Controllers
 
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
-        {
-            var Result = _carService.Get(id);
+        {            
+            var Result = _rentalService.Get(id);
             if (Result.Success)
             {
                 return Ok(Result);
             }
-            return BadRequest(Result);           
-        }
-
-        [HttpGet("getcarsdetails")]
-        public IActionResult GetCarsDetails()
-        {
-            var Result = _carService.GetCarDetails();
-            if (Result.Success)
-            {
-                return Ok(Result);
-            }
-            return BadRequest(Result);
+            return BadRequest(Result);            
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Car car)
+        public IActionResult Add(Rental rental)
         {
-            var Result = _carService.Add(car);
+            var Result = _rentalService.Add(rental);
             if (Result.Success)
             {
                 return Ok(Result);
             }
-            return BadRequest(Result);
+            return BadRequest(Result);            
         }
 
     }

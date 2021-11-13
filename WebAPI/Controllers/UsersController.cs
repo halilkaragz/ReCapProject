@@ -1,5 +1,4 @@
 ﻿using Business.Abstract;
-using Core.Utilities.Results;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,20 +11,18 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CarsController : ControllerBase
+    public class UsersController : ControllerBase
     {
-        ICarService _carService;
-
-        public CarsController(ICarService carService)
+        IUserService _userservice;
+        public UsersController(IUserService userService)
         {
-            _carService = carService;
+            _userservice = userService;
         }
 
         [HttpGet("getall")]
         public IActionResult GetAll()
-        {    
-            //De
-            var Result = _carService.GetAll();
+        {
+            var Result = _userservice.GetAll();
             if (Result.Success)
             {
                 return Ok(Result);
@@ -36,18 +33,7 @@ namespace WebAPI.Controllers
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
-            var Result = _carService.Get(id);
-            if (Result.Success)
-            {
-                return Ok(Result);
-            }
-            return BadRequest(Result);           
-        }
-
-        [HttpGet("getcarsdetails")]
-        public IActionResult GetCarsDetails()
-        {
-            var Result = _carService.GetCarDetails();
+            var Result = _userservice.Get(id);
             if (Result.Success)
             {
                 return Ok(Result);
@@ -56,15 +42,14 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Car car)
+        public IActionResult Add(User user)
         {
-            var Result = _carService.Add(car);
+            var Result = _userservice.Add(user);
             if (Result.Success)
             {
                 return Ok(Result);
             }
             return BadRequest(Result);
         }
-
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Business.Abstract;
-using Core.Utilities.Results;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,20 +11,19 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CarsController : ControllerBase
+    public class ColorsController : ControllerBase
     {
-        ICarService _carService;
+        IColorService _colorService;
 
-        public CarsController(ICarService carService)
+        public ColorsController(IColorService colorService)
         {
-            _carService = carService;
+            _colorService = colorService;
         }
 
         [HttpGet("getall")]
         public IActionResult GetAll()
-        {    
-            //De
-            var Result = _carService.GetAll();
+        {
+            var Result = _colorService.GetAll();
             if (Result.Success)
             {
                 return Ok(Result);
@@ -36,18 +34,7 @@ namespace WebAPI.Controllers
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
-            var Result = _carService.Get(id);
-            if (Result.Success)
-            {
-                return Ok(Result);
-            }
-            return BadRequest(Result);           
-        }
-
-        [HttpGet("getcarsdetails")]
-        public IActionResult GetCarsDetails()
-        {
-            var Result = _carService.GetCarDetails();
+            var Result = _colorService.Get(id);
             if (Result.Success)
             {
                 return Ok(Result);
@@ -56,9 +43,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Car car)
+        public IActionResult Add(Color color)
         {
-            var Result = _carService.Add(car);
+            var Result = _colorService.Add(color);
             if (Result.Success)
             {
                 return Ok(Result);

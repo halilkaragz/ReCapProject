@@ -16,5 +16,6 @@ namespace Business.Constant
         public static string BrandAdded = "Marka eklendi";
         public static string InvalidCarDailyPrice = "Arabanın günlük kiralama fiyatı sıfırdan büyük olmalıdır!";
         public static string InvalidRentforNotReturn = "Araç teslim edilmediği için kiralama başarısız";
+        public static string CustomersListed = "Müşteriler listelendi";
     }
 }

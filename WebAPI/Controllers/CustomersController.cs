@@ -1,5 +1,4 @@
 ﻿using Business.Abstract;
-using Core.Utilities.Results;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,20 +11,18 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CarsController : ControllerBase
+    public class CustomersController : ControllerBase
     {
-        ICarService _carService;
-
-        public CarsController(ICarService carService)
+        ICustomerService _customerService ;
+        public CustomersController(ICustomerService customerService)
         {
-            _carService = carService;
+            _customerService = customerService;
         }
 
         [HttpGet("getall")]
         public IActionResult GetAll()
-        {    
-            //De
-            var Result = _carService.GetAll();
+        {
+            var Result = _customerService.GetAll();
             if (Result.Success)
             {
                 return Ok(Result);
@@ -36,18 +33,17 @@ namespace WebAPI.Controllers
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
-            var Result = _carService.Get(id);
+            var Result = _customerService.Get(id);
             if (Result.Success)
             {
                 return Ok(Result);
             }
-            return BadRequest(Result);           
+            return BadRequest(Result);
         }
-
-        [HttpGet("getcarsdetails")]
-        public IActionResult GetCarsDetails()
+        [HttpGet("getcustomersdetails")]
+        public IActionResult GetCustomersDatails()
         {
-            var Result = _carService.GetCarDetails();
+            var Result = _customerService.GetCustomerDetails();
             if (Result.Success)
             {
                 return Ok(Result);
@@ -56,15 +52,15 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Car car)
+        public IActionResult Add(Customer customer)
         {
-            var Result = _carService.Add(car);
+            var Result = _customerService.Add(customer);
             if (Result.Success)
             {
                 return Ok(Result);
             }
             return BadRequest(Result);
-        }
 
+        }
     }
 }
