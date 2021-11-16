@@ -36,14 +36,14 @@ namespace WebAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });
             });
 
-            services.AddSingleton<ICarService, CarManager>();
-            services.AddSingleton<ICarDal, EFCarDal>();
-            services.AddSingleton<IColorService, ColorManager>();
-            services.AddSingleton<IColorDal, EFColorDal>();
-            services.AddSingleton<ICustomerService, CustomerManager>();
-            services.AddSingleton<ICustomerDal, EFCustomerDal>();
-            services.AddSingleton<IRentalService, RentalManager>();
-            services.AddSingleton<IRentalDal, EFRentalDal>();
+            //services.AddSingleton<ICarService, CarManager>();
+            //services.AddSingleton<ICarDal, EFCarDal>();
+            //services.AddSingleton<IColorService, ColorManager>();
+            //services.AddSingleton<IColorDal, EFColorDal>();
+            //services.AddSingleton<ICustomerService, CustomerManager>();
+            //services.AddSingleton<ICustomerDal, EFCustomerDal>();
+            //services.AddSingleton<IRentalService, RentalManager>();
+            //services.AddSingleton<IRentalDal, EFRentalDal>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

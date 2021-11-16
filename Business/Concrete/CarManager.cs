@@ -1,9 +1,11 @@
 ﻿using Business.Abstract;
 using Business.Constant;
+using Business.ValidationRules.FluentValidation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,21 +25,31 @@ namespace Business.Concrete
 
         public IResult Add(Car car)
         {
-            if (car.Description.Length < 2)
+            //if (car.Description.Length < 2)
+            //{
+            //    //Console.WriteLine("Araba açıklaması iki karakterden fazla olmalıdır!");
+            //    return new ErrorResult(Messages.CarNameInvalid);
+            //}
+            //else if (car.DailyPrice <= 0)
+            //{
+            //    //Console.WriteLine("Arabanın günlük kiralama fiyatı sıfırdan büyük olmalıdır!");
+            //    return new ErrorResult(Messages.InvalidCarDailyPrice);
+            //}
+            //else
+            //{
+            //    _carDal.Add(car);
+            //    return new SuccessResult(Messages.CarAdded);                
+            //}
+            var validationContext = new ValidationContext<Car>(car);
+            CarValidator carValidator = new CarValidator();
+            var Result = carValidator.Validate(validationContext);
+            if (!Result.IsValid)
             {
-                //Console.WriteLine("Araba açıklaması iki karakterden fazla olmalıdır!");
-                return new ErrorResult(Messages.CarNameInvalid);
+                throw new ValidationException(Result.Errors);
             }
-            else if (car.DailyPrice <= 0)
-            {
-                //Console.WriteLine("Arabanın günlük kiralama fiyatı sıfırdan büyük olmalıdır!");
-                return new ErrorResult(Messages.InvalidCarDailyPrice);
-            }
-            else
-            {
-                _carDal.Add(car);
-                return new SuccessResult(Messages.CarAdded);                
-            }
+
+            _carDal.Add(car);
+            return new SuccessResult(Messages.CarAdded);
         }
 
         public IResult Delete(Car car)
