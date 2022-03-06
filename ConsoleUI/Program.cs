@@ -1,9 +1,8 @@
 ﻿using Business.Concrete;
+using Core.Entities.Concrete;
 using DataAccess.Concrete.EntityFramework;
-using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using System;
-using System.Collections.Generic;
 
 namespace ConsoleUI
 {
@@ -27,8 +26,7 @@ namespace ConsoleUI
             {
                 FirstName = "Halil",
                 LastName = "Karagöz",
-                Email = "halilkaragoz_blsm@hotmail.com",
-                Password = "1234567890"
+                Email = "halilkaragoz_blsm@hotmail.com",               
             };
 
             userManager.Add(user);

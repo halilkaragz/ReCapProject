@@ -1,4 +1,4 @@
-﻿namespace Core.Entities.concrete
+﻿namespace Core.Entities.Concrete
 {
     public class User:IEntity
     {
