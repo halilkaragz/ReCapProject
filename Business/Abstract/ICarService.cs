@@ -12,5 +12,6 @@ namespace Business.Abstract
     public interface ICarService: IServiceRepository<Car>
     {       
         IDataResult<List<CarDetailDTO>> GetCarDetails();
+        IResult AddTransactionalTest(Car car);
     }
 }
