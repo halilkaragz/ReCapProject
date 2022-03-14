@@ -7,6 +7,6 @@ namespace Business.Abstract
     public interface IUserService : IServiceRepository<User>
     {       
         List<OperationClaim> GetClaims(User user);  
-        User GetByMail(string email);     
+        User GetByMail(string email);       
     }
 }
